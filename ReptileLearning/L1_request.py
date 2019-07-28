@@ -63,8 +63,21 @@ def training_request_audio():
         f.write(img)
     print("文件已保存到：{}".format(path))
 
+def training_request_html():
+    text = request_data('https://localprod.pandateacher.com/python-manuscript/crawler-html/spider-men5.0.html')
+    if text == None:
+        return
+
+    name = input("请输入保存文件名(输入为空时默认使用内容前五字.html)：")
+    if name == "":
+        name=text[:6]
+    path = folder+name+".html"
+    with open(path, "w", encoding="utf-8") as f:
+        f.write(text)
+    print("文件已保存到：{}".format(path))
 
 if __name__ == "__main__":
     # training_request_text()   #文字下载
     # training_request_image()  #图片下载
-    training_request_audio()  #音频下载
+    # training_request_audio()  #音频下载
+    training_request_html()   #网页下载
