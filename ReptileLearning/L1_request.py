@@ -1,25 +1,11 @@
-import requests
-import time
+import sys
+sys.path.append("D:\\GitHub\\Hello-World\\")
+from py.Module.rs_data import request_data as rs_data
 #引入requests库
 folder = "D:\\GitHub\\OutputData""\\"
 
-def request_data(url, is_text=True):
-    # url: str
-    while True:
-        res = requests.get(url)
-        if res.status_code == 100:
-            print("1秒后继续请求")
-            time.sleep(1)
-            continue
-        elif res.status_code == 200:
-            print("请求成功")
-            return res.text if is_text else res.content
-        else:
-            print("不可访问")
-            return None
-
 def training_request_text():
-    text = request_data('https://localprod.pandateacher.com/python-manuscript/crawler-html/exercise/HTTP响应状态码.md')
+    text = rs_data('https://localprod.pandateacher.com/python-manuscript/crawler-html/exercise/HTTP响应状态码.md')
     if text == None:
         return
 
@@ -32,7 +18,7 @@ def training_request_text():
     print("文件已保存到：{}".format(path))
 
 def training_request_image():
-    img = request_data('https://res.pandateacher.com/2019-01-12-15-29-33.png', is_text=False)
+    img = rs_data('https://res.pandateacher.com/2019-01-12-15-29-33.png', is_text=False)
     if img == None:
         return
 
@@ -48,7 +34,7 @@ def training_request_image():
     print("文件已保存到：{}".format(path))
 
 def training_request_audio():
-    img = request_data('https://static.pandateacher.com/Over%20The%20Rainbow.mp3', is_text=False)
+    img = rs_data('https://static.pandateacher.com/Over%20The%20Rainbow.mp3', is_text=False)
     if img == None:
         return
 
@@ -64,7 +50,7 @@ def training_request_audio():
     print("文件已保存到：{}".format(path))
 
 def training_request_html():
-    text = request_data('https://localprod.pandateacher.com/python-manuscript/crawler-html/spider-men5.0.html')
+    text = rs_data('https://localprod.pandateacher.com/python-manuscript/crawler-html/spider-men5.0.html')
     if text == None:
         return
 
